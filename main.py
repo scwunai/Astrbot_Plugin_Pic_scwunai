@@ -18,7 +18,7 @@ class PicPlugin(Star):
         
 
     
-    # 注册指令的装饰器。指令名为 helloworld
+    # 注册指令的装饰器。指令名为 pic
     @filter.command("pic")
     async def pic(self, event: AstrMessageEvent,
             keyword: Optional[str] = None,
@@ -145,10 +145,24 @@ class PicPlugin(Star):
             return url_list
 
 
-        pic_json = get_pic(r18 = self.r18,num = self.num, keyword = keyword, tag = tag, size = size, proxy = self.proxy, dsc = self.dsc, exclude_ai = self.exclude_ai, aspect_ratio = aspect_ratio, method = self.method)
+        pic_json = get_pic(r18 = self.r18,
+                           num = self.num, 
+                           keyword = keyword, 
+                           tag = tag, 
+                           size = size,
+                           proxy = self.proxy, 
+                           dsc = self.dsc, 
+                           exclude_ai = self.exclude_ai, 
+                           aspect_ratio = aspect_ratio, 
+                           method = self.method
+                           )
+        
         if pic_json:
+            chain = [
             At(qq=event.get_sender_id()),
             Plain("图片返回："),
-            Image.fromURL(extract_pic_urls(pic_json)[0], size='small'),
+            Image.fromURL(extract_pic_urls(pic_json)[0]),
+            ]
+            yield event.chain_result(chain)
         else:
-            Plain("请求失败，请检查配置")
+            yield event.plain_result("请求失败，请检查配置")
