@@ -1,0 +1,36 @@
+{
+    "r18": {
+        "description": "是否加入R18图像",
+        "type": "int",
+        "hint": "R18，0非R18，1R18，2混合",
+        "options": [0, 1, 2]
+    },
+    "num": {
+        "description": "请求图片张数",
+        "type": "int",
+        "hint": "请求图片张数",
+        "default": 1
+    },
+    "proxy": {
+        "description": "pixiv 反代服务地址",
+        "type": "string",
+        "hint": "反代服务地址",
+        "default": "i.pixiv.re"
+    },
+    "dsc": {
+        "description": "禁用自动转换",
+        "type": "bool",
+        "hint": "勾选即可禁用自动转换"
+    },
+    "exclude_ai": {
+        "description": "是否排除AI生成图像",
+        "type": "bool",
+        "hint": "排除AI"
+    },
+    "method": {
+        "description": "接口的请求方法选择",
+        "type": "string",
+        "hint": "请求方法",
+        "options": ["GET", "POST"]
+    }
+}
